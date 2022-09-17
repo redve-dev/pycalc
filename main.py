@@ -7,24 +7,25 @@ EDITOR="nvim"
 
 def switch_case(args):
     try:
-        last = max((int(i) for i in os.listdir(MAIN_DIR)))
+        last = max(map(int, os.listdir(MAIN_DIR)))
     except ValueError:
         last=1
 
-    if args[0] == "new":
-        return edit(last+1)
-    if args[0] == "last":
-        return edit(last)
-    if args[0] == "log":
-        return log(args, last)
-    if args[0] == "edit":
-        if len(args) <= 1:
-            return
-        return edit(args[1])
-    if args[0] == 'list':
-        return list_dir()
-    if args[0] == "help":
-        return help()
+    match args[0]:
+        case "new":
+            edit(last+1)
+        case "last":
+            edit(last)
+        case "log":
+            log(args, last)
+        case "edit":
+            if len(args) <= 1:
+                return
+            edit(args[1])
+        case 'list':
+            list_dir()
+        case "help":
+            help()
 
 def main():
     _, *instructions = argv
