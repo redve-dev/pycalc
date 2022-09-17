@@ -2,7 +2,7 @@ import os
 from sys import argv
 from commands import edit, log, list_dir, help
 
-MAIN_DIR = "%s/Programming/python/PYCALC" % os.environ['HOME']
+MAIN_DIR = f"{os.environ['HOME']}/Programming/python/PYCALC"
 EDITOR="nvim"
 
 def switch_case(args):
@@ -30,7 +30,7 @@ def switch_case(args):
 def main():
     _, *instructions = argv
     if not instructions:
-        print("exec \"pycalc help\" to get list of available commands\n")
+        print('exec "pycalc help" to get list of available commands\n')
         return
 
     if not os.path.isdir(MAIN_DIR):
