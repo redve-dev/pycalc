@@ -5,11 +5,10 @@ import os
 from datetime import datetime
 
 def execute_code(path, ):
-    s=StringIO()
-    with redirect_stdout(s):
         # try catch block avoided intentionally, user should get debugging information about his code
-        exec(open(path+"/main.py").read())
-    with open(path+'/logs', 'a') as f:
+    exec(open(path+"/main.py").read())
+    s=StringIO()
+    with open(path+'/logs', 'a'), redirect_stdout(s) as f:
         print(s.getvalue())
         f.write(datetime.now().strftime("%d-%m-%Y %H:%M:%S"+'\n'))
         f.write('='*50+'\n')
