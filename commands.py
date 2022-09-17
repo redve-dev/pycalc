@@ -17,7 +17,7 @@ def execute_code(path, ):
         f.write('\n'+'='*50+'\n')
 
 def edit_code(path):
-    file = "%s/main.py" % path
+    file = f"{path}/main.py" 
     if not os.path.exists(file):
         Path(file).touch()
     from main import EDITOR
@@ -26,27 +26,27 @@ def edit_code(path):
 
 def log_file(id):
     from main import MAIN_DIR
-    file = "%s/%s/logs" % (MAIN_DIR, id)
+    file = f"{MAIN_DIR}/{id}/logs"
     with open(file, 'r') as f:
         for line in f:
             print(line.strip())
 
 def edit(last):
     from main import MAIN_DIR
-    path="%s/%s" % (MAIN_DIR, str(last))
+    path=f"{MAIN_DIR}/{last}"
     if not os.path.exists(path):
         os.mkdir(path)
     edit_code(path)
 
 def log(args, last):
-        if len(args) < 2:
-            log_file(last)
-            return
-        from main import MAIN_DIR
-        if not os.path.exists("%s/%s/logs" % (MAIN_DIR, args[1])):
-            print("pycalc %s does not exist" % args[1])
-            return
-        log_file(args[1])
+    if len(args) < 2:
+        log_file(last)
+        return
+    from main import MAIN_DIR
+    if not os.path.exists(f"{MAIN_DIR}/{args[1]}/logs"):
+        print(f"pycalc {args[1]} does not exist")
+        return
+    log_file(args[1])
 
 def list_dir():
     from main import MAIN_DIR
