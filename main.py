@@ -26,6 +26,8 @@ def switch_case(args):
             list_dir()
         case "help":
             help()
+        case _:
+            print('unrecognized command, exec "pycalc help" to get list of available commands')
 
 def main():
     _, *instructions = argv
